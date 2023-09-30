@@ -7,35 +7,25 @@ END binary#;
 /
 
 CREATE OR REPLACE PACKAGE BODY binary# IS
-   FUNCTION to_decimal(binarynumber varchar2) RETURN NUMBER IS
-      v_decimal NUMBER := 0;
+   FUNCTION to_decimal(binarynumber varchar2) RETURN number IS
+      v_decimal number := 0;
       v_length NUMBER := LENGTH(binarynumber);
    BEGIN
       FOR i IN 1..v_length LOOP
          IF SUBSTR(binarynumber, i, 1) = '1' THEN
            v_decimal := v_decimal + POWER(2, v_length - i);
          END IF;
-         --IF i != 0 AND i != 1 THEN
-           --v_decimal := 0;
-           --EXIT;
-         --END IF;
+         IF SUBSTR(binarynumber, i, 1) != '1'  AND
+            SUBSTR(binarynumber, i, 1) != '0' THEN
+           v_decimal := 0;
+           EXIT;
+         END IF;
       END LOOP;
       
       RETURN v_decimal;
    END to_decimal;
 END binary#;
 /
-
-
-
-
-
-
-
-
-
-
-
 
 
 
