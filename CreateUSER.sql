@@ -1,0 +1,2 @@
+CREATE USER exercism IDENTIFIED BY exercismpass;
+GRANT ALL PRIVILEGES TO exercism;
